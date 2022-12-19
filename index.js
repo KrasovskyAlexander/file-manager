@@ -40,7 +40,7 @@ const main = () => {
                 up(currentDir);
                 currentDir = cwd();
                 break;
-            case 'cd': 
+            case 'cd':  // to change disk (cd D:/{some_path or empty for root} or cd C:/{some_path or empty for root})
                 pathToFile = path.resolve(currentDir, commandArgument[0]);
                 cd(pathToFile);
                 currentDir = cwd();
