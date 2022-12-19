@@ -24,11 +24,10 @@ const main = () => {
     }
 
     consoleSuccessfully(`Welcome to the File Manager, ${userName}!`);
-
-    rl.setPrompt(`You are currently in ${currentDir}> \n`);
+    
+    rl.setPrompt(`\x1b[36mYou are currently in ${currentDir}>\x1b[0m \n`);
     rl.prompt();
     
-
     rl.on('line', async (line) => {
         let isNeedPrompt = true;
         let pathToFile = '';
@@ -97,17 +96,19 @@ const main = () => {
                     case '--architecture': 
                         console.log(getArch());
                         break;
-                    default: break;
+                    default: 
+                        consoleError('Wrong os command')
+                        break;
                 }
                 break;
-            case 'compress': {
-                pathToFile = path.resolve(currentDir, commandArgument[0]);
+            case 'compress': {    // Brotli-compressed files are usually identified by . br extension                                         
+                pathToFile = path.resolve(currentDir, commandArgument[0]);   // example (compress test.txt Documents/archive.br)
                 const pathToNewFile = path.resolve(currentDir, commandArgument[1]);
                 await compress(pathToFile, pathToNewFile);
                 break;
             };
-            case 'decompress': {
-                pathToFile = path.resolve(currentDir, commandArgument[0]);
+            case 'decompress': { 
+                pathToFile = path.resolve(currentDir, commandArgument[0]);  //example (decompress Documents/archive.br Downloads/test.txt)
                 const pathToNewFile = path.resolve(currentDir, commandArgument[1]);
                 await decompress(pathToFile, pathToNewFile);
                 break;
@@ -123,7 +124,7 @@ const main = () => {
         }
 
         if (isNeedPrompt) {
-            rl.setPrompt(`You are currently in ${currentDir}> \n`);
+            rl.setPrompt(`\x1b[36mYou are currently in ${currentDir}>\x1b[0m \n`);
             rl.prompt()
         };
     })

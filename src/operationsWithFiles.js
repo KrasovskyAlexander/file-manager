@@ -4,8 +4,8 @@ import { createReadStream, createWriteStream } from 'node:fs';
 import { writeFile, rename, rm } from 'node:fs/promises';
 import path from 'path';
 
- import { exists } from './utils.js';
- import { consoleSuccessfully, consoleError } from './logs.js';
+import { exists } from './utils.js';
+import { consoleSuccessfully, consoleError } from './logs.js';
 
 export const readFile = async (path) => {
     const isExist = await exists(path);
@@ -39,8 +39,6 @@ export const createFile = async (path) => {
         consoleError(error)
     }
 };
-
-
 
 export const renameFile = async (pathToFile, newFileName) => {
     try {
@@ -109,5 +107,3 @@ export const moveFile = async (pathToFile, pathToNewFile) => {
         consoleError(error)
     }
 };
-
-

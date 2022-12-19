@@ -18,6 +18,6 @@ export const calculateHash = async (path) => {
 
         console.log('hash:', hash);
     } catch (error) {
-        consoleError(error)
+        consoleError(error);
     }
 };

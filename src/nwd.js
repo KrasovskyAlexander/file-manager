@@ -6,23 +6,23 @@ import { consoleSuccessfully, consoleError } from './logs.js';
 
 export const up = (currentDir) =>  {
     try {
-        chdir(path.resolve(currentDir, '..'))
+        chdir(path.resolve(currentDir, '../'));
         consoleSuccessfully(`New directory: ${cwd()}`);
     } catch (err) {
         consoleError(`chdir: ${err}`);
     }
-}
+};
 
 export const cd = (path) =>  {
     try {
-        chdir(path)
+        chdir(path);
         consoleSuccessfully(`New directory: ${cwd()}`);
     } catch (err) {
         consoleError(`chdir: ${err}`);
     }
-}
+};
 
-const checkType = (file) => file.isDirectory() ? 'directory' : file.isFile() ? 'file' : null
+const checkType = (file) => file.isDirectory() ? 'directory' : file.isFile() ? 'file' : null;
 
 export const ls  = async (path) => {
     const files = await readdir(path, { withFileTypes: true });
@@ -33,4 +33,4 @@ export const ls  = async (path) => {
         .sort((a, b) => a.Type.localeCompare(b.Type))
 
     console.table(sortedListFiles);
-}
+};
