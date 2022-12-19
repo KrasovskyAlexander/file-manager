@@ -20,7 +20,7 @@ const main = () => {
 
     if (!userName) {
         rl.close();
-        return consoleError('Please write you username');
+        return consoleError('Please write you username. Or maybe you use powershell, pls use bash or etc');
     }
 
     consoleSuccessfully(`Welcome to the File Manager, ${userName}!`);
